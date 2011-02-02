@@ -1,7 +1,5 @@
 /*
- * Galois LFSR software implementation.
- *
- * © 2010 Michael Foukarakis
+ * Galois LFSR software implementation header file
  */
 #include <stdint.h>
 

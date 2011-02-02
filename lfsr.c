@@ -1,8 +1,14 @@
 /*
- * Galois LFSR software implementation.
- *
- * WARNING:
- * Polynomial representation: x^4 + x^3 + 1 = 11001 = 0x19
+ * @file	/home/mfukar/src/lfsr/lfsr.c
+ * @author	Michael Foukarakis
+ * @version	1.0
+ * @date
+ * 	Created:     Wed Feb 02, 2011 18:47 EET
+ * 	Last Update: Wed Feb 02, 2011 18:58 EET
+ *------------------------------------------------------------------------
+ * Description:	Galois LFSR software implementation
+ * 		WARNING:
+ * 		Polynomial representation: x^4 + x^3 + 1 = 11001 = 0x19
  *
  * Well-known polynomials:
  * CRC-12	: x^12 + x^11 + x^3 + x^2 + x + 1
@@ -29,8 +35,10 @@
  * Source of secure polynoms:
  * http://homepage.mac.com/afj/taplist.html
  * http://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
- *
- * © 2010 Michael Foukarakis
+ *------------------------------------------------------------------------
+ * History:	None yet
+ * TODO:	Nothing yet
+ *------------------------------------------------------------------------
  */
 #include "lfsr.h"
 
@@ -52,7 +60,6 @@ void GLFSR_init(lfsr_t *glfsr, lfsr_data polynom, lfsr_data seed_value)
 		}
 		seed_mask >>= 1;
 	}
-
 	return;
 }
 
@@ -66,6 +73,6 @@ unsigned char GLFSR_next(lfsr_t *glfsr)
 		retval = 1;
 		glfsr->data ^= glfsr->polynomial;
 	}
-	
+
 	return(retval);
 }

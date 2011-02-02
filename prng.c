@@ -10,9 +10,9 @@ int main(int argc, char **argv) {
     unsigned char bitc0;
     unsigned char bitr = 0;
     char byte = 0, bitpos = 7;
-    unsigned int bitcounter = 0, ones = 0, zeros = 0, dropped = 0;
-    unsigned int polynom_d, init_value_d;
-    unsigned int polynom_c, init_value_c;
+    unsigned long long bitcounter = 0, ones = 0, zeros = 0, dropped = 0;
+    lfsr_data polynom_d, init_value_d,
+	      polynom_c, init_value_c;
 
     if (argc < 5) {
         fprintf(stderr, "Usage: %s <data_polynomial> <data_seed> <clock_polynomial> <clock_seed>\n", argv[0]);
@@ -25,12 +25,12 @@ int main(int argc, char **argv) {
 	    exit(-1);
     }
 
-    sscanf(argv[1], "%x", &polynom_d);
-    sscanf(argv[2], "%x", &init_value_d);
+    sscanf(argv[1], "%lx", &polynom_d);
+    sscanf(argv[2], "%lx", &init_value_d);
     GLFSR_init(&glfsr_d0, polynom_d, init_value_d);
 
-    sscanf(argv[3], "%x", &polynom_c);
-    sscanf(argv[4], "%x", &init_value_c);
+    sscanf(argv[3], "%lx", &polynom_c);
+    sscanf(argv[4], "%lx", &init_value_c);
     GLFSR_init(&glfsr_c0, polynom_c, init_value_c);
 
     do {
@@ -38,10 +38,10 @@ int main(int argc, char **argv) {
         bitc0 = GLFSR_next(&glfsr_c0);
 
         if (glfsr_d0.data == init_value_d)
-            printf("GLFSR D0 overflow at %d.\n", bitcounter);
+            printf("GLFSR D0 overflow at %llu.\n", bitcounter);
 
         if (glfsr_c0.data == init_value_c)
-            printf("GLFSR C0 overflow at %d.\n", bitcounter);
+            printf("GLFSR C0 overflow at %llu.\n", bitcounter);
 
         printf("Next bits: %d, %d\t= ", bit0, bitc0);
 
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
     } while (!((glfsr_d0.data == init_value_d) && (glfsr_c0.data == init_value_c)));
 
     fclose(fp);
-    printf("\nNumber of steps: %d (%d bytes)\nOnes: %d, zeros: %d, dropped: %d\n", bitcounter, (zeros + ones) / 8, ones, zeros, dropped);
+    printf("\nNumber of steps: %llu (%llu bytes)\nOnes: %llu, zeros: %llu, dropped: %llu\n", bitcounter, (zeros + ones) / 8, ones, zeros, dropped);
 
     return 0;
 }

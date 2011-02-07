@@ -3,9 +3,9 @@
 # @author	Michael Foukarakis
 # @version	1.0
 # @date 	Created:     Thu Feb 03, 2011 08:19 GTB Standard Time
-# 		Last Update: Thu Feb 03, 2011 16:26 GTB Standard Time
+# 		Last Update: Mon Feb 07, 2011 12:22 EET
 #------------------------------------------------------------------------
-# Description:	Implementation of a Galois LFSR 
+# Description:	Implementation of a Galois LFSR
 #               The bitstream is provided by the generator function
 #               GLFSR.states(). The 'repeat' flag controls whether the
 #               generator stops once the LFSR overflows or whether it
@@ -27,7 +27,7 @@ class GLFSR:
 				temp_mask = temp_mask ^ self.mask
 			if temp_mask == 0: break
 			self.mask = self.mask << 1
-	
+
 	def states(self, repeat=False):
 		while True:
 			self.data = self.data << 1

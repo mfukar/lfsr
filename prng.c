@@ -5,14 +5,15 @@
 lfsr_t glfsr_d0;
 lfsr_t glfsr_c0;
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     unsigned char bit0;
     unsigned char bitc0;
     unsigned char bitr = 0;
     char byte = 0, bitpos = 7;
     unsigned long long bitcounter = 0, ones = 0, zeros = 0, dropped = 0;
     lfsr_data polynom_d, init_value_d,
-	      polynom_c, init_value_c;
+              polynom_c, init_value_c;
 
     if (argc < 5) {
         fprintf(stderr, "Usage: %s <data_polynomial> <data_seed> <clock_polynomial> <clock_seed>\n", argv[0]);
@@ -21,8 +22,8 @@ int main(int argc, char **argv) {
 
     FILE *fp = fopen("bitstream.bin", "w");
     if(!fp) {
-	    fprintf(stderr, "Error opening output file.\n");
-	    exit(-1);
+            fprintf(stderr, "Error opening output file.\n");
+            exit(-1);
     }
 
     sscanf(argv[1], "%lx", &polynom_d);
@@ -50,17 +51,17 @@ int main(int argc, char **argv) {
             printf("%d\n", bitr);
 
             if (bitpos < 0) {
-		fprintf(fp, "%c", byte);
+                fprintf(fp, "%c", byte);
                 bitpos = 7;
                 byte = 0;
             }
-        
+
             byte |= bitr << bitpos;
             bitpos--;
 
             bitr ? ones++ : zeros++;
         } else {
-	    printf("dropped\n");
+            printf("dropped\n");
             dropped++;
         }
 

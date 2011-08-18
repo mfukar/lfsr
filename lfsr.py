@@ -16,29 +16,29 @@
 # TODO:         Nothing yet
 #------------------------------------------------------------------------
 class GLFSR:
-        def __init__(self, polynomial, seed):
-                self.polynomial = polynomial | 1
-                self.seed = seed
-                self.data = seed
-                self.mask = 1
+    def __init__(self, polynomial, seed):
+        self.polynomial = polynomial | 1
+        self.seed = seed
+        self.data = seed
+        self.mask = 1
 
-                temp_mask = polynomial
-                while temp_mask != 0:
-                        if temp_mask & self.mask != 0:
-                                temp_mask = temp_mask ^ self.mask
-                        if temp_mask == 0: break
-                        self.mask = self.mask << 1
+        temp_mask = polynomial
+        while temp_mask != 0:
+            if temp_mask & self.mask != 0:
+                temp_mask = temp_mask ^ self.mask
+            if temp_mask == 0: break
+            self.mask = self.mask << 1
 
-        def states(self, repeat=False):
-                while True:
-                        self.data = self.data << 1
-                        if self.data & self.mask != 0:
-                                self.data = self.data ^ self.polynomial
-                                yield 1
-                        else:
-                                yield 0
-                        if repeat == False and self.data == self.seed:
-                                return
+    def states(self, repeat=False):
+        while True:
+            self.data = self.data << 1
+            if self.data & self.mask != 0:
+                self.data = self.data ^ self.polynomial
+                yield 1
+            else:
+                yield 0
+            if repeat == False and self.data == self.seed:
+                return
 
 
 # Polynomials needed below this point

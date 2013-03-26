@@ -7,13 +7,11 @@ lfsr_t glfsr_c0;
 
 int main(int argc, char **argv)
 {
-    unsigned char bit0;
-    unsigned char bitc0;
-    unsigned char bitr = 0;
+    unsigned char bit0, bitc0, bitr = 0;
     char byte = 0, bitpos = 7;
     unsigned long long bitcounter = 0, ones = 0, zeros = 0, dropped = 0;
-    lfsr_data polynom_d, init_value_d,
-              polynom_c, init_value_c;
+    lfsr_data_t polynom_d, init_value_d,
+                polynom_c, init_value_c;
 
     if (argc < 5) {
         fprintf(stderr, "Usage: %s <data_polynomial> <data_seed> <clock_polynomial> <clock_seed>\n", argv[0]);

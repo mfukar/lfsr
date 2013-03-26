@@ -1,10 +1,10 @@
 /*
- * @file	/home/mfukar/src/lfsr/lfsr.c
+ * @file	lfsr.c
  * @author	Michael Foukarakis
- * @version	1.0
+ * @version	1.1
  * @date
  * 	Created:     Wed Feb 02, 2011 18:47 EET
- * 	Last Update: Wed Feb 02, 2011 18:58 EET
+ * 	Last Update: Tue Mar 26, 2013 12:40 GTB Standard Time
  *------------------------------------------------------------------------
  * Description:	Galois LFSR software implementation
  * 		WARNING:
@@ -32,7 +32,7 @@
  * x^10 + x^3 + 1
  * x^10 + x^9 + x^8 + x^6 + x^3 + x^2 + 1
  *
- * Source of secure polynoms:
+ * Source of polynomials:
  * http://homepage.mac.com/afj/taplist.html
  * http://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
  *------------------------------------------------------------------------
@@ -42,25 +42,25 @@
  */
 #include "lfsr.h"
 
-void GLFSR_init(lfsr_t *glfsr, lfsr_data polynom, lfsr_data seed_value)
+void GLFSR_init(lfsr_t *glfsr, lfsr_data_t polynom, lfsr_data_t seed_value)
 {
-	lfsr_data	seed_mask;
-	unsigned int	shift = 8 * sizeof(lfsr_data) - 1;
+    lfsr_data_t seed_mask;
+    unsigned int shift = 8 * sizeof(lfsr_data) - 1;
 
-	glfsr->polynomial = polynom | 1;
-	glfsr->data = seed_value;
+    glfsr->polynomial = polynom | 1;
+    glfsr->data = seed_value;
 
-	seed_mask = 1;
-	seed_mask <<= shift;
+    seed_mask = 1;
+    seed_mask <<= shift;
 
-	while(shift--) {
-		if(polynom & seed_mask) {
-			glfsr->mask = seed_mask;
-			break;
-		}
-		seed_mask >>= 1;
-	}
-	return;
+    while(shift--) {
+        if(polynom & seed_mask) {
+            glfsr->mask = seed_mask;
+            break;
+        }
+        seed_mask >>= 1;
+    }
+    return;
 }
 
 unsigned char GLFSR_next(lfsr_t *glfsr)

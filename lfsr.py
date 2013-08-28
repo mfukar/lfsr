@@ -4,7 +4,7 @@
 # @author       Michael Foukarakis
 # @version      1.0
 # @date         Created:     Thu Feb 03, 2011 08:19 GTB Standard Time
-#               Last Update: Tue Mar 26, 2013 12:41 GTB Standard Time
+#               Last Update: Wed Aug 28, 2013 10:22 BST
 #------------------------------------------------------------------------
 # Description:  Implementation of a Galois LFSR
 #               The bitstream is provided by the generator function
@@ -47,7 +47,7 @@ X   = Polynomial([1, 0])
 One = Polynomial([1])
 
 def bm(seq):
-    '''Implementation of the Berlekamp-Massey algorithm, the purpose
+    """Implementation of the Berlekamp-Massey algorithm, the purpose
        of which is to find a LFSR with the smallest possible length
        that generates a given sequence.
 
@@ -66,7 +66,7 @@ def bm(seq):
        The generating function G(x) = s_0 + s_1 * x^1 + s_2 * x^2 + ...
        of a LFSR is rational and (when written in lowest terms) the
        denominator f(x) is called the characteristic polynomial of the
-       LFSR. Here we have f(x) = c0 * x^m + c1 * x^{m-1} +...+ c{m-1} * x + 1.'''
+       LFSR. Here we have f(x) = c0 * x^m + c1 * x^{m-1} +...+ c{m-1} * x + 1."""
     # Allow for an input string along with a list or tuple
     if type(S)==type("string"):
         S = map(int,tuple(S))

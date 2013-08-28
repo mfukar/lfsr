@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Sun Jul 10, 2011 03:03 PDT
-#              Last Update: Mon Jan 24, 2011 14:54 GTB Standard Time
+#              Last Update: Wed Aug 28, 2013 10:23 BST
 #------------------------------------------------------------------------
 # Description: A class representing polynomials over GF(2).
 #              The coefficients are stored in a list.
@@ -14,9 +14,8 @@
 
 class Polynomial(list):
     def __str__(self):
-        L = ['x^{}'.format(k) for k in enumerate(self[::-1]) if x == 1]
-        L.reverse()
-        return '+'.join(L)
+        L = ['{}*x^{}'.format(e, i) for i,e in enumerate(self)]
+        return ' + '.join(L)
 
     def __add__(self, other):
         if len(self) < len(other):
@@ -57,5 +56,5 @@ class Polynomial(list):
 
 
 def dot(x, y):
-        '''Returns the dot product of two lists.'''
+        """Returns the dot product of two lists."""
         return reduce(xor, [a&b for (a,b) in zip(x,y)], 0)

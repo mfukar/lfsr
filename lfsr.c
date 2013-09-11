@@ -65,14 +65,14 @@ void GLFSR_init(lfsr_t *glfsr, lfsr_data_t polynom, lfsr_data_t seed_value)
 
 unsigned char GLFSR_next(lfsr_t *glfsr)
 {
-	unsigned char retval = 0;
+    unsigned char retval = 0;
 
-	glfsr->data <<= 1;
+    glfsr->data <<= 1;
 
-	if(glfsr->data & glfsr->mask) {
-		retval = 1;
-		glfsr->data ^= glfsr->polynomial;
-	}
+    if(glfsr->data & glfsr->mask) {
+        retval = 1;
+        glfsr->data ^= glfsr->polynomial;
+    }
 
-	return(retval);
+    return retval ;
 }

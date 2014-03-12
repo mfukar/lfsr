@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Sun Jul 10, 2011 03:03 PDT
-#              Last Update: Wed Aug 28, 2013 10:23 BST
+#              Last Update: Mon Jan 27, 2014 12:13 EET
 #------------------------------------------------------------------------
 # Description: A class representing polynomials over GF(2).
 #              The coefficients are stored in a list.

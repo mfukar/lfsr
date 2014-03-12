@@ -1,3 +1,16 @@
+/**
+ * @file        prng.c
+ * @author      Michael Foukarakis
+ * @date        Created:     Wed Mar 12, 2014 14:03 GMT
+ *              Last Update: Wed Mar 12, 2014 14:05 GMT
+ * @description PRNG using linear feedback shift registers.
+ *              One shift register is used to provide data, while another register is used
+ *              to "clock" data output; meaning a data bit is output when the clock
+ *              register outputs a one bit, otherwise the data bit is dropped.
+ *------------------------------------------------------------------------
+ * -*- coding: utf-8 -*-
+ *------------------------------------------------------------------------
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "lfsr.h"

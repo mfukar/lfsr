@@ -2,7 +2,7 @@
  * @file        prng.c
  * @author      Michael Foukarakis
  * @date        Created:     Wed Mar 12, 2014 14:03 GMT
- *              Last Update: Wed Mar 12, 2014 14:05 GMT
+ *              Last Update: Thu Oct 06, 2016 14:43 CEST
  * @description PRNG using linear feedback shift registers.
  *              One shift register is used to provide data, while another register is used
  *              to "clock" data output; meaning a data bit is output when the clock
@@ -37,12 +37,12 @@ int main(int argc, char **argv)
             exit(-1);
     }
 
-    sscanf(argv[1], "%lx", &polynom_d);
-    sscanf(argv[2], "%lx", &init_value_d);
+    sscanf(argv[1], "%llx", &polynom_d);
+    sscanf(argv[2], "%llx", &init_value_d);
     GLFSR_init(&glfsr_d0, polynom_d, init_value_d);
 
-    sscanf(argv[3], "%lx", &polynom_c);
-    sscanf(argv[4], "%lx", &init_value_c);
+    sscanf(argv[3], "%llx", &polynom_c);
+    sscanf(argv[4], "%llx", &init_value_c);
     GLFSR_init(&glfsr_c0, polynom_c, init_value_c);
 
     do {

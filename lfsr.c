@@ -4,7 +4,7 @@
  * @version 1.1
  * @date
  *  Created:     Wed Feb 02, 2011 18:47 EET
- *  Last Update: Wed Sep 18, 2013 13:54 BST
+ *  Last Update: Thu Oct 06, 2016 14:42 CEST
  *------------------------------------------------------------------------
  * Description: Galois LFSR software implementation
  *      WARNING:
@@ -42,10 +42,9 @@
  */
 #include "lfsr.h"
 
-void GLFSR_init(lfsr_t *glfsr, lfsr_data_t polynom, lfsr_data_t seed_value)
-{
+void GLFSR_init(lfsr_t *glfsr, lfsr_data_t polynom, lfsr_data_t seed_value) {
     lfsr_data_t seed_mask;
-    unsigned int shift = 8 * sizeof lfsr_data_t - 1;
+    unsigned int shift = 8 * sizeof (lfsr_data_t) - 1;
 
     glfsr->polynomial = polynom | 1;
     glfsr->data = seed_value;
@@ -63,8 +62,7 @@ void GLFSR_init(lfsr_t *glfsr, lfsr_data_t polynom, lfsr_data_t seed_value)
     return;
 }
 
-unsigned char GLFSR_next(lfsr_t *glfsr)
-{
+unsigned char GLFSR_next(lfsr_t *glfsr) {
     unsigned char retval = 0;
 
     glfsr->data <<= 1;

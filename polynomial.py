@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Sun Jul 10, 2011 03:03 PDT
-#              Last Update: Mon Jan 27, 2014 12:13 EET
+#              Last Update: Thu Oct 06, 2016 14:39 CEST
 #------------------------------------------------------------------------
 # Description: A class representing polynomials over GF(2).
 #              The coefficients are stored in a list.
@@ -28,7 +28,7 @@ class Polynomial(list):
                     new.pop(0)
             except IndexError:
                 new = []
-            return Poly(new)
+            return Polynomial(new)
 
     def dot(self,S):
         """ This returns the sum of ck*S{N-k} where N+1 = len(S),
